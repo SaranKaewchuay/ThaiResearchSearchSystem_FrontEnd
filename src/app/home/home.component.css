@@ -1,0 +1,31 @@
+::-webkit-scrollbar {
+    background-color:#0a4275;
+  }
+.font{
+    font-family: 'Sarabun', cursive;
+}
+
+.blue{
+    color: #0a4275
+}
+
+.no-underline {
+    text-decoration: none;
+  }
+  /* .fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  } */
+
+.margin-top{
+    margin-top: 100px;
+}
+
+
+ .font-size{
+  font-size: 10px;
+ }

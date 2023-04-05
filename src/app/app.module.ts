@@ -7,6 +7,10 @@ import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ResearchDetailComponent } from './research-detail/research-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +21,7 @@ import { ResearchDetailComponent } from './research-detail/research-detail.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,FormsModule, ReactiveFormsModule
+    HttpClientModule,FormsModule, ReactiveFormsModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

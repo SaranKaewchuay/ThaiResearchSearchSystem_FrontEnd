@@ -8,9 +8,10 @@ import axios from 'axios';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  selected = 'option2';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +19,8 @@ export class HomeComponent {
     }),
   };
 
+  selectedProvince: string = '';
+  string = 'Select';
   oecd : string = '';
   year : string = '';
   province : string = '';

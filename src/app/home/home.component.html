@@ -45,34 +45,36 @@
                                 <div class="form-row p-2 font">
                                     <div class="col">
                                         <label>OECD</label>
-                                        <select class="form-control font" formControlName="oecd" value={{oecd}}>
-                                            <option value="">select</option>
-                                            <option *ngFor="let list of facetOecd">{{list.data}}</option>
+                                        <select class="form-control font" formControlName="oecd" >
+                                            <!-- <option value="" *ngIf="oecd">{{oecd}}</option> -->
+                                            <option value="" >select</option>   
+                                          <option *ngFor="let list of facetOecd">{{list.data}}</option>
                                         </select>
-                                    </div>
+                                      </div>
+                                      
+
 
                                     <div class="col">
                                         <label>Year</label>
-                                        <select class="form-control font" formControlName="year" value={{year}}>
+                                        <select class="form-control font" formControlName="year">
+<!--                                           
+                                            <option value="" *ngIf="year">{{year}}</option> -->
                                             <option value="">select</option>
                                             <option *ngFor="let list of facetYear">{{list.data}}</option>
                                         </select>
-                                    </div>
 
+                                    </div>
+                    
                                     <div class="col">
                                         <label>Province</label>
-                                        <select class="form-control font" formControlName="province" value={{province}}>
-                                            <option value="">select</option>
-                                            <option *ngFor="let list of facetProvince" >{{list.data}}</option>
+                                        <select class="form-control font" formControlName="province" [(ngModel)]="selectedProvince">
+                                            <!-- <option value="" *ngIf="province">{{province}}</option> -->
+                                          <option value="">select</option>
+                                          <option *ngFor="let list of facetProvince">{{list.data}}</option>
                                         </select>
-                                    </div>
+                                      </div>
                                     <div class="col">
                                         <label></label>
-                                        <!-- <div class="search__btn">
-                                            <a (click)="getDataBoolean()" class="no-underline">
-                                                <i class="ico_search" style="color: #0a4275; "></i>
-                                            </a>
-                                        </div> -->
                                         <div class="search__btn">
                                             <button type="button font" (click)="getDataBoolean()" class="no-underline">
                                                 <i class="ico_search" style="color: #0a4275; "></i>
@@ -80,8 +82,8 @@
                                         </div>
                                     </div>
                                     <div class="font col">
-                                        <p> Researchs: {{numfound|number}}  </p>
-                                        <p *ngIf="booleanFilter"> Your searched: {{booleanFilter}} </p>
+                                        <p> Researchs: {{numfound|number}} </p>
+                                        <p *ngIf="booleanFilter"> Your searched: {{booleanFilter}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +112,7 @@
                                                 </div>
                                                 <div *ngIf="facetField">
                                                     <span class="badge rounded-pill font ms-auto font-size"
-                                                    style="background-color: #3d90dd">{{facetField}}</span>
+                                                        style="background-color: #3d90dd">{{facetField}}</span>
                                                 </div>
                                             </div>
 

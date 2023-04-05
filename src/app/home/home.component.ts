@@ -97,7 +97,7 @@ export class HomeComponent {
 
     this.book = [];
     this.facetField = ""
-    let baseUrl = `http://localhost:8080/getDataByFact1/` + key + `/` + value
+    let baseUrl = `http://localhost:8080/getDataByFact/` + key + `/` + value
     axios.get(baseUrl)
       .then((response) => {
         this.book = response.data.response.docs;

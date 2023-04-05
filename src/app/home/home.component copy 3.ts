@@ -22,21 +22,21 @@ export class HomeComponent {
   selectedProvince: string = '';
   check_boolean: boolean = false;
   string = 'Select';
-  oecd: string = '';
-  year: string = '';
-  province: string = '';
+  oecd : string = '';
+  year : string = '';
+  province : string = '';
   facetYear: any[] = [];
   facetOecd: any[] = [];
   facetProvince: any[] = [];
   facetField: string = '';
-  booleanFilter: string = '';
-  test: string = '';
+  booleanFilter : string = '';
+  test : string = '';
   numfound: any;
   selectedValue: string = '';
   state: any = {};
   book: any[] = [];
   detail: any[] = [];
-  click: string = '';
+  click:string = '';
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -55,9 +55,9 @@ export class HomeComponent {
     this.state.click = this.click;
     this.state.facetField = this.facetField;
     this.state.booleanFilter = this.booleanFilter;
-    this.state.oecd = this.oecd,
-      this.state.year = this.year,
-      this.state.province = this.province
+    this.state.oecd = this.oecd ,
+    this.state.year = this.year ,
+    this.state.province = this.province
   }
 
 
@@ -68,20 +68,20 @@ export class HomeComponent {
     this.searchYear(this.selectedValue)
   }
 
-  getDataBoolean() {
+  getDataBoolean(){
     this.check_boolean = true
     this.oecd = (document.querySelector('[formControlName="oecd"]') as HTMLSelectElement).value;
     this.year = (document.querySelector('[formControlName="year"]') as HTMLSelectElement).value;
     this.province = (document.querySelector('[formControlName="province"]') as HTMLSelectElement).value;
-    this.booleanFilter = this.oecd + " " + this.year + " " + this.province
+    this.booleanFilter = this.oecd + " " + this.year + " " +  this.province
 
     this.oecd = this.oecd === "" ? "*" : this.oecd;
     this.year = this.year === "" ? "*" : this.year;
     this.province = this.province === "" ? "*" : this.province;
     this.book = [];
     this.facetField = ""
-
-    let baseUrl = `http://localhost:8080/getDataBoolean/` + this.year + `/` + this.province + `/` + this.oecd
+    
+    let baseUrl = `http://localhost:8080/getDataBoolean/`+ this.year +`/`+ this.province +`/`+ this.oecd
     axios.get(baseUrl)
       .then((response) => {
         this.book = response.data.response.docs;
@@ -93,26 +93,77 @@ export class HomeComponent {
       .catch(error => console.error(error));
   }
 
-  getDataByFact(key: string, value: string) {
+  // getDataByFact(key:string , value:string){
+  //   this.book = [];
+  //   this.facetField = ""
+  //   let baseUrl = `http://localhost:8080/getDataByFact/`+ key+`/`+ value
+  //   axios.get(baseUrl)
+  //     .then((response) => {
+  //       this.book = response.data.response.docs;
+  //       this.numfound = response.data.response.numFound;
+  //       this.facetField = value
+  //     })
+  //     .catch(error => console.error(error));
+  // }
 
-    this.book = [];
-    this.facetField = ""
-    let baseUrl = `http://localhost:8080/getDataByFact1/` + key + `/` + value
-    axios.get(baseUrl)
-      .then((response) => {
-        this.book = response.data.response.docs;
-        this.numfound = response.data.response.numFound;
-        this.facetField = value
-      })
-      .catch(error => console.error(error));
+  getDataByFact(key:string , value:string){
 
+    if(this.check_boolean){
+      this.book = [];
+      var key1;
+      var key2;
+      var value1;
+      var value2;
+      this.facetField = ""
+      if(key == "OECD1"){
+        key1 = "ProjectYearSubmit"
+        value1 = this.year
+        key2 = "SubmitDepProvinceTH"
+        value2 = this.province
+      }else if (key == "ProjectYearSubmit"){
+        key1 = "OECD1"
+        value1 = this.oecd
+        key2 = "SubmitDepProvinceTH"
+        value2 = this.province
+      }
+      else if(key == "SubmitDepProvinceTH"){
+        key1 = "OECD1"
+        value1 = this.oecd
+        key2 = "ProjectYearSubmit"
+        value2 = this.year
+      }
+      let baseUrl = `http://localhost:8080/getDataByFact/`+ key+`/`+ value +`/`+  key1 +`/`+ value1 +`/`+  key2 +`/`+ value2
+      axios.get(baseUrl)
+        .then((response) => {
+          this.book = response.data.response.docs;
+          this.numfound = response.data.response.numFound;
+          this.facetField = value
+        })
+        .catch(error => console.error(error));
+
+    }else{
+      this.book = [];
+      this.facetField = ""
+      let baseUrl = `http://localhost:8080/getDataByFact1/`+ key+`/`+ value
+      axios.get(baseUrl)
+        .then((response) => {
+          this.book = response.data.response.docs;
+          this.numfound = response.data.response.numFound;
+          this.facetField = value
+        })
+        .catch(error => console.error(error));
+    }
+    this.check_boolean = false
+
+   
+    
   }
 
-
+  
   submit() {
     if (this.form.valid) {
       this.search(this.form.controls['keyword'].value);
-    } else {
+    }else{
       this.search("*");
     }
   }

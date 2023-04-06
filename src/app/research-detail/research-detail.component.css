@@ -1,123 +1,116 @@
 ::-webkit-scrollbar {
-    background-color:#0a4275;
-  }
-.font{
-    font-family: 'Sarabun', cursive;
+  background-color: #0a4275;
 }
 
-.blue{
-    color: #0a4275
-}
-
-.no-underline {
-    text-decoration: none;
-  }
-  /* .fixed {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-  } */
-
-.margin-top{
-    margin-top: 100px;
-}
-  
-::-webkit-scrollbar {
-  background-color:#0a4275;
-}
-.font{
+.font {
   font-family: 'Sarabun', cursive;
 }
 
+.blue {
+  color: #0a4275
+}
 
 .no-underline {
   text-decoration: none;
 }
-/* .fixed {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-} */
 
-.margin-top{
+.margin-top {
+  margin-top: 100px;
+}
+
+::-webkit-scrollbar {
+  background-color: #0a4275;
+}
+
+.font {
+  font-family: 'Sarabun', cursive;
+}
+
+.text {
+  text-align: justify;
+  text-align-last: justify;
+ 
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.margin-top {
   margin-top: 100px;
 }
 
 .card {
-background-color: #f8f9fa;
-border: 1px solid #e9ecef;
-border-radius: 10px;
-margin-bottom: 30px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .card-header {
-background-color: #0a4275;
-color: #fff;
-padding: 20px;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
+  background-color: #0a4275;
+  color: #fff;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .card-body {
-padding: 20px;
+  padding: 20px;
 }
 
 .divData {
-overflow: auto;
-margin-left: 105px
+  overflow: auto;
+  margin-left: 105px;
+  display:contents;
+  
 }
 
 
 .divTitle {
-margin-top: 0;
-padding-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 li {
-display: flex;
-align-items: flex-start;
-margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .page-store {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  }
-  
-  .container-xl {
+}
+
+.container-xl {
   max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
-  }
-  
-  .mb-5 {
-  margin-bottom: 3rem!important;
-  }
-  
-  .mb-2 {
-  margin-bottom: 0.5rem!important;
-  }
-  
-  .mb-5 {
-  margin-bottom: 3rem!important;
-  }
-  
-  .mt-5 {
-  margin-top: 3rem!important;
-  }
-  
-  .font {
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.font {
   font-size: 1
-  }
+}
 
 .page-header {
   position: fixed;
@@ -149,11 +142,13 @@ margin-bottom: 10px;
 }
 
 .game-profile-card__list li {
-  display: contents; /* เอา divData ออกเพื่อให้ divData เป็น grid item */
+  display: contents;
+  /* เอา divData ออกเพื่อให้ divData เป็น grid item */
 }
 
 .game-profile-card__list .divData {
-  grid-column: 2; /* กำหนด divData เป็น grid item ใน column ที่ 2 */
+  grid-column: 2;
+  /* กำหนด divData เป็น grid item ใน column ที่ 2 */
 }
 
 .game-profile-card__list div {
@@ -164,11 +159,11 @@ margin-bottom: 10px;
 
 
 
-.font{
+.font {
   font-family: 'Sarabun', cursive;
 }
 
-.blue{
+.blue {
   color: #0a4275
 }
 
@@ -224,9 +219,12 @@ margin-bottom: 10px;
 }
 
 ul {
-  display: flex; /* ใช้ Flexbox สำหรับแสดงผลรายการ */
-  flex-direction: column; /* จัดเรียงลำดับแนวตั้ง */
-  gap: 16px; /* กำหนดความห่างระหว่างแต่ละ li */
+  display: flex;
+  /* ใช้ Flexbox สำหรับแสดงผลรายการ */
+  flex-direction: column;
+  /* จัดเรียงลำดับแนวตั้ง */
+  gap: 16px;
+  /* กำหนดความห่างระหว่างแต่ละ li */
 }
 
 
@@ -270,7 +268,7 @@ ul {
   margin: auto;
   bottom: 20px;
   background-color: #bbdefb;
-  background-image: linear-gradient( to right, #0004 0%, #0004 49%, #0000 50%, #0000 100% ),
+  background-image: linear-gradient(to right, #0004 0%, #0004 49%, #0000 50%, #0000 100%),
     linear-gradient(135deg, #64b5f6 50%, #607d8b 51%);
   background-size: 30px 100%, 90px 80px;
   border-radius: 50%;
@@ -301,18 +299,28 @@ ul {
 }
 
 @keyframes shake {
-  65%, 80%, 88%, 96% {
+
+  65%,
+  80%,
+  88%,
+  96% {
     transform: rotate(0.5deg)
   }
 
-  50%, 75%, 84%, 92% {
+  50%,
+  75%,
+  84%,
+  92% {
     transform: rotate(-0.5deg)
   }
 
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(0)
   }
 }
+
 .loader {
   position: fixed;
   top: 50%;

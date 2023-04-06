@@ -1,83 +1,74 @@
-<div class="page-store ">
-    <div class="container-xl  shadow mb-5 p-5 rounded" style="margin-top: 110px;" >
-        <header class="page-header shadow-lg mb-5 " style="background-color: #0a4275;">
-            <div class="page-header__inner container-xl" style="background-color: #0a4275;">
-                <a [routerLink]="['/home']" style="text-decoration: none;">
-                    <div>
-                        <div class="page-header__logo mb-3">
-                            <span class="page-header__logo_text text-white font ">
-                                Thai Research Search
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </header>
-        <div class="">
-            <main class="">
-                <div *ngFor="let item of detail; let i = index">
-                    <h3 class="uk-text-lead font">{{ item.ProjectNameTH }}</h3>
-                    <div class="" >
-                        <!-- <div style="width: 1550px;"> -->
-                        <div style="width: 900px;">
-                            <div class="game-profile-card">
-                
-                                <ul class="game-profile-card__list font">
-                                    <li>
-                                        <div>ผู้เขียน: </div>
-                                        <div >
-                                            <span > {{ item.Headname }}</span></div>
-                                    </li>
-                                    <li>
-                                        <div>ประเภทโครงการ: </div>
-                                        <div>{{ item.ProjectType }}</div>
-                                    </li>
-                                    <li>
-                                        <div>สังกัด: </div>
-                                        <div>{{ item.SubmitDepartmentth }}</div>
-                                    </li>
-                                    <li>
-                                        <div>OECD: </div>
-                                        <div>{{ item.OECD1 }}, {{ item.OECD2 }}</div>
-                                    </li>
-                                    <li>
-                                        <div>ปีที่เผยแพร่: </div>
-                                        <div>{{ item.ProjectYearSubmit }}</div>
-                                    </li>
-                                    <li>
-                                        <div>วัตถุประสงค์: </div>
-                                        <div>{{ item.ProjectObjective }}</div>
-                                    </li>
-                                    <li>
-                                        <div>บทคัดย่อโครงการ: </div>
-                                        <div>{{ item.ProjectAbstract }}</div>
-                                    </li>
-                                    <li>
-                                        <div>สถานที่: </div>
-                                        <div>{{ item.SubmitDepProvinceTH }}</div>
-                                    </li>
-                                </ul>
-                                <!-- <ul class="game-profile-card__type">
-                                    <li><span>Strategy</span></li>
-                                    <li><span>Survival</span></li>
-                                    <li><span>City Builder</span></li>
-                                    <li><span>Dark</span></li>
-                                </ul> -->
+<div >
 
-                            </div>
-                            <!-- <div class="game-profile-price">
-                                <div class="game-profile-price__value">$13.99 USD</div><button
-                                    class="uk-button uk-button-danger uk-width-1-1" type="button"><span
-                                        class="ico_shopping-cart"></span><span>Buy Now</span></button><button
-                                    class="uk-button uk-button-primary uk-width-1-1" type="button"><span
-                                        class="ico_add-square"></span><span>Add to Favourites</span></button>
-                            </div> -->
-                        </div>
+
+  <div class="container-xl fixed margin-top" style="color: #0a4275;">
+
+    <header class="page-header shadow-lg mb-5 " style="background-color: #0a4275;">
+        <div class="page-header__inner container" style="background-color: #0a4275;">
+            <a [routerLink]="['/']" class="no-underline">
+                <div>
+                    <div class="page-header__logo mb-3">
+                        <span class="page-header__logo_text text-white font ">
+                            Thai Research Search
+                        </span>
                     </div>
                 </div>
-            </main>
+            </a>
         </div>
+    </header>
+
+
+
+
+    
+    <div *ngIf="isLoading" class="loader"></div>
+
+    <div class="mb-5">
+      <div class="container-xl" style="margin-top: 110px;">
+        <div *ngFor="let item of detail; let i = index">
+          <div class="shadow p-3 mb-2 bg-white rounded">
+            <h2 class="uk-text-lead font blue"><b>{{ item.ProjectNameTH }}</b></h2>
+          </div>
+          <div class="shadow p-3 bg-white rounded">
+            <div class="game-profile-card">
+              <ul class="game-profile-card__list font">
+                <li>
+                  <div>ผู้เขียน:</div>
+                  <div class="divData"><span>{{ item.Headname }}</span></div>
+                </li>
+                <li>
+                  <div class="divTitle">ประเภทโครงการ:</div>
+                  <div class="divData">{{ item.ProjectType }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">สังกัด:</div>
+                  <div class="divData">{{ item.SubmitDepartmentth }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">OECD:</div>
+                  <div class="divData">{{ item.OECD1 }}, {{ item.OECD2 }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">ปีที่เผยแพร่:</div>
+                  <div class="divData">{{ item.ProjectYearSubmit }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">วัตถุประสงค์:</div>
+                  <div class="divData">{{ item.ProjectObjective }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">บทคัดย่อโครงการ:</div>
+                  <div class="divData">{{ item.ProjectAbstract }}</div>
+                </li>
+                <li>
+                  <div class="divTitle">สถานที่:</div>
+                  <div class="divData">{{ item.SubmitDepProvinceTH }}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
+  </div>
 </div>

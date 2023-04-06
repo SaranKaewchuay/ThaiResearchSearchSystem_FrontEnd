@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ResearchDetailComponent } from './research-detail/research-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,FormsModule, ReactiveFormsModule, BrowserAnimationsModule
+    HttpClientModule,FormsModule, ReactiveFormsModule, BrowserAnimationsModule,
+    MatSlideToggleModule ,MatFormFieldModule,MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

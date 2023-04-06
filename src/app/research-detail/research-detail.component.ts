@@ -23,6 +23,7 @@ export class ResearchDetailComponent {
   detail : any[] = [];
   facetAuthor: facetDisplay[] = [];
   facetPublisher: facetDisplay[] = [];
+  isLoading = true;
 
   constructor(private http: HttpClient,private route: ActivatedRoute) {}
 
@@ -41,6 +42,7 @@ export class ResearchDetailComponent {
       this.detail = response.response.docs;
       // this.numfound= response.response.numFound;
       try {
+        this.isLoading = false;
         // this.data_detail = response
       } catch (error) {}
     });

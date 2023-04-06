@@ -5,11 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { ResearchDetailComponent } from './research-detail/research-detail.component';
 
 const routes: Routes = [
-  {path:'',component:IndexComponent},
+  {path:'',component:HomeComponent},
   {path:'index',component:IndexComponent},
-  {path:'home',component:HomeComponent},
   {path:'research-detail/:id',component:ResearchDetailComponent}
 ];
+
+// {path:'home',component:HomeComponent},
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

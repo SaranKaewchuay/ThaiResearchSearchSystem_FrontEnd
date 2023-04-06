@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators ,FormBuilder} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
+
 
 
 @Component({
@@ -19,7 +20,6 @@ export class HomeComponent {
     }),
   };
 
-  selectedProvince: string = '';
   check_boolean: boolean = false;
   string = 'Select';
   oecd: string = '';
@@ -37,8 +37,19 @@ export class HomeComponent {
   book: any[] = [];
   detail: any[] = [];
   click: string = '';
+  isLoading = true;
+ 
+  selectedOECD: string = '';
+  selectedYear: string = '';
+  selectedProvince: string = '';
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  myForm: FormGroup;
+  constructor(private http: HttpClient, private route: ActivatedRoute) { 
+
+    this.myForm = new FormGroup({
+      oecd: new FormControl()
+    });
+  }
 
   form: FormGroup = new FormGroup({
     keyword: new FormControl('', Validators.required),
@@ -56,10 +67,10 @@ export class HomeComponent {
     this.state.facetField = this.facetField;
     this.state.booleanFilter = this.booleanFilter;
     this.state.oecd = this.oecd,
-      this.state.year = this.year,
-      this.state.province = this.province
+    this.state.year = this.year,
+    this.state.province = this.province
+    
   }
-
 
   onSelect(event: Event) {
     this.selectedValue = (event.target as HTMLSelectElement).value;
@@ -70,9 +81,9 @@ export class HomeComponent {
 
   getDataBoolean() {
     this.check_boolean = true
-    this.oecd = (document.querySelector('[formControlName="oecd"]') as HTMLSelectElement).value;
-    this.year = (document.querySelector('[formControlName="year"]') as HTMLSelectElement).value;
-    this.province = (document.querySelector('[formControlName="province"]') as HTMLSelectElement).value;
+    this.oecd = this.selectedOECD
+    this.year = this.selectedYear
+    this.province =  this.selectedProvince
     this.booleanFilter = this.oecd + " " + this.year + " " + this.province
 
     this.oecd = this.oecd === "" ? "*" : this.oecd;
@@ -91,8 +102,14 @@ export class HomeComponent {
         this.addProvinceFact(response.data.facet_counts.facet_fields.SubmitDepProvinceTH)
       })
       .catch(error => console.error(error));
+
+
+      this.oecd = this.oecd === "*" ? "" : this.oecd;
+      this.year = this.year === "*" ? "" : this.year;
+      this.province = this.province === "*" ? "" : this.province;
   }
 
+  
   getDataByFact(key: string, value: string) {
 
     this.book = [];
@@ -107,13 +124,23 @@ export class HomeComponent {
       .catch(error => console.error(error));
 
   }
-
-
+  
   submit() {
+    this.booleanFilter = "";
     if (this.form.valid) {
-      this.search(this.form.controls['keyword'].value);
+      let keyword = this.form.controls['keyword'].value
+      this.search(keyword);
+      this.booleanFilter = keyword
+      this.selectedOECD = "";
+      this.selectedYear = "";
+      this.selectedProvince = "";
     } else {
-      this.search("*");
+      if(this.selectedOECD || this.selectedYear || this.selectedProvince){
+        this.getDataBoolean()
+      }else{
+        this.search("*");
+      }
+      
     }
   }
 
@@ -149,6 +176,9 @@ export class HomeComponent {
 
 
   search(keyword: string) {
+    this.oecd = ""
+    this.year = ""
+    this.province = ""
     this.book = [];
     this.facetField = ""
     this.booleanFilter = ""
@@ -160,6 +190,7 @@ export class HomeComponent {
         this.addYearFact(response.data.facet_counts.facet_fields.ProjectYearSubmit)
         this.addOecdFact(response.data.facet_counts.facet_fields.OECD1)
         this.addProvinceFact(response.data.facet_counts.facet_fields.SubmitDepProvinceTH)
+        this.isLoading = false;
       })
       .catch(error => console.error(error));
 
@@ -180,6 +211,7 @@ export class HomeComponent {
     this.book = [];
     let baseUrl;
     if (oecd == "*") {
+      this.check_boolean = false;
       baseUrl = `http://localhost:8080/getsolr/` + oecd;
     } else {
       baseUrl = `http://localhost:8080/getByOecd/` + oecd;

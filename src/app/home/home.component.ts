@@ -42,6 +42,7 @@ export class HomeComponent {
   selectedOECD: string = '';
   selectedYear: string = '';
   selectedProvince: string = '';
+  isActive = false;
 
   myForm: FormGroup;
   constructor(private http: HttpClient, private route: ActivatedRoute) { 

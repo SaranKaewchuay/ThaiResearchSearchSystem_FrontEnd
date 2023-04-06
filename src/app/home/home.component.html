@@ -6,8 +6,10 @@
             <div class="page-header__inner container-xl" style="background-color: #0a4275;">
                 <a (click)="search('*')" class="no-underline">
                     <div>
-                        <div class="page-header__logo mb-3">
-                            <span class="page-header__logo_text text-white font ">
+                        
+                        <div class=" mb-3">
+                            <img src="https://www.qualitymatters.org/sites/default/files/illustrations-infographics/research-webinar-icon-600px.png" width="75px" height="80px" class="mt-3" >
+                            <span class="page-header__logo_text text-white font ml-2">
                                 Thai Research Search
                             </span>
                         </div>
@@ -29,7 +31,7 @@
                                             <div class="search">
                                                 <div class="search__input font">
                                                     <input type="search" name="search" placeholder="Search"
-                                                        formControlName="keyword" aria-label="Search">
+                                                        formControlName="keyword" aria-label="Search" style="color: black;" class="font">
                                                 </div>
                                                 <div class="search__btn">
                                                     <button type="button font" type="submit">
@@ -45,11 +47,12 @@
                                     <div class="col">
                                         <mat-form-field appearance="fill">
                                             <mat-label>OECD</mat-label>
-                                            <mat-select [(ngModel)]="selectedOECD" name="OECD">
-                                                <mat-option [value]="">
+                                            <mat-select [(ngModel)]="selectedOECD" name="OECD" class="font">
+                                                <mat-option [value]="" class="font">
                                                     Select
                                                 </mat-option>
-                                                <mat-option *ngFor="let opt of facetOecd" [value]="opt.data">
+                                                <mat-option *ngFor="let opt of facetOecd" [value]="opt.data"
+                                                    class="font">
                                                     {{opt.data}}
                                                 </mat-option>
                                             </mat-select>
@@ -59,39 +62,44 @@
                                     <div class="col">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Year</mat-label>
-                                            <mat-select [(ngModel)]="selectedYear" name="year">
-                                                <mat-option [value]="">
+                                            <mat-select [(ngModel)]="selectedYear" name="year" class="font">
+                                                <mat-option [value]="" class="font">
                                                     Select
                                                 </mat-option>
-                                                <mat-option *ngFor="let opt of facetYear" [value]="opt.data">
+                                                <mat-option *ngFor="let opt of facetYear" [value]="opt.data"
+                                                    class="font">
                                                     {{opt.data}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
 
-                                    {{selectedValue}}
 
                                     <div class="col">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Province</mat-label>
-                                            <mat-select [(ngModel)]="selectedProvince" name="province">
-                                                <mat-option [value]="">
+                                            <mat-select [(ngModel)]="selectedProvince" name="province" class="font">
+                                                <mat-option [value]="" class="font">
                                                     Select
                                                 </mat-option>
-                                                <mat-option *ngFor="let opt of facetProvince" [value]="opt.data">
+                                                <mat-option *ngFor="let opt of facetProvince" [value]="opt.data"
+                                                    class="font">
                                                     {{opt.data}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
-
-                                    <div class="font col">
+                                    <div class="font col mt-3" style="font-size:medium;">
                                         <p> Researchs: {{numfound|number}} </p>
-                                        <p *ngIf="booleanFilter"> Your searched: {{booleanFilter}}</p>
                                     </div>
+
+
+                                </div>
+                                <div class="font col">
+                                    <p *ngIf="booleanFilter" style="font-size:medium;"> <b>Your searched:</b> {{booleanFilter}}</p>
                                 </div>
                             </div>
+
                         </div>
 
 
@@ -103,20 +111,23 @@
                                             <img
                                                 src="https://www.pubaffairsbruxelles.eu/wp-content/uploads/2021/05/43009-scaled.jpg" />
                                         </div>
-                                        <div class="p-2 d-flex justify-content-between font">
+                                        <div class="p-2 d-flex justify-content-between ">
                                             <div>
-                                                <p class="blue font">{{ item.ProjectNameTH }}</p>
-                                                <div class="game-card__discussion font">OECD: <b>{{item.OECD1 }}</b>
+                                                <span class="blue font">{{ item.ProjectNameTH }}</span>
+                                                <div class="game-card__discussion font">OECD:<span
+                                                        style="color: black;">&nbsp; {{item.OECD1 }}</span>
                                                 </div>
                                                 <div class="game-card__discussion font">ผู้เขียน:
-                                                    <b>{{item.Headname}}</b>
+                                                    <span style="color: black;">&nbsp; {{item.Headname}} </span>
+
                                                 </div>
                                                 <div class="game-card__discussion font">ปีที่เผยแพร่:
-                                                    <b>{{item.ProjectYearSubmit }}</b>
+                                                    <span style="color: black;">&nbsp; {{item.ProjectYearSubmit }} </span>
+
                                                 </div>
                                                 <div *ngIf="facetField">
                                                     <span class="badge rounded-pill font ms-auto font-size"
-                                                        style="background-color: #3d90dd">{{facetField}}</span>
+                                                        style="background-color: #0a4275">{{facetField}}</span>
                                                 </div>
                                             </div>
 
@@ -133,7 +144,7 @@
                     <div class="uk-width-1-3@l mb-0">
                         <div class="widjet --my-list">
                             <div class="widjet__head">
-                                <h3 class="uk-text-lead font">OECD</h3>
+                                <h3 class="uk-text-lead font fw-bold">OECD</h3>
                             </div>
                             <div class="widjet__body">
                                 <ul class="my-game-list">
@@ -145,7 +156,7 @@
                                                 <div class="list-group-item d-flex justify-content-between align-items-start my-game-item  btn  m-1"
                                                     style="border-radius: 10px; width: 60%;" *ngIf="item.count">
                                                     <div class="ms-2 me-auto">
-                                                        <div class="fw-bold font">{{item.data}}</div>
+                                                        <div class="font">{{item.data}}</div>
                                                     </div>
 
                                                     <span class="badge rounded-pill font"
@@ -163,7 +174,7 @@
 
                         <div class="widjet --my-list mb-5">
                             <div class="widjet__head">
-                                <h3 class="uk-text-lead font">Year</h3>
+                                <h3 class="uk-text-lead font fw-bold">Year</h3>
                             </div>
                             <div class="widjet__body">
                                 <ul class="my-game-list">
@@ -173,11 +184,10 @@
                                         <li *ngFor="let item of facetYear|slice:0:7">
                                             <a (click)="getDataByFact('ProjectYearSubmit',item.data)"
                                                 class="no-underline">
-                                                <!-- *ngIf="item.count" -->
                                                 <div class="list-group-item d-flex justify-content-between align-items-start my-game-item  btn  m-1"
                                                     style="border-radius: 10px; width: 60%;" *ngIf="item.count">
                                                     <div class="ms-2 me-auto">
-                                                        <div class="fw-bold font">{{item.data}}</div>
+                                                        <div class=" font">{{item.data}}</div>
                                                     </div>
 
                                                     <span class="badge rounded-pill font"
@@ -193,7 +203,7 @@
 
                             <div class="widjet --my-list">
                                 <div class="widjet__head">
-                                    <h3 class="uk-text-lead font">Provinces</h3>
+                                    <h3 class="uk-text-lead font fw-bold">Provinces</h3>
                                 </div>
                                 <div class="widjet__body">
                                     <ul class="my-game-list">
@@ -206,7 +216,7 @@
                                                     <div class="list-group-item d-flex justify-content-between align-items-start my-game-item  btn  m-1"
                                                         style="border-radius: 10px; width: 60%;" *ngIf="item.count">
                                                         <div class="ms-2 me-auto">
-                                                            <div class="fw-bold font">{{item.data}}</div>
+                                                            <div class="font">{{item.data}}</div>
                                                         </div>
 
                                                         <span class="badge rounded-pill font"

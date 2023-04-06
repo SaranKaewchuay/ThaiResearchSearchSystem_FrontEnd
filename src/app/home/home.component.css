@@ -30,6 +30,12 @@
   font-size: 10px;
  }
 
+ button.active {
+  background-color: rgb(27, 16, 124);
+  color: white;
+}
+
+
 
  .loader {
   width: 120px;

@@ -32,9 +32,6 @@
   font-family: 'Sarabun', cursive;
 }
 
-.blue{
-  color: #0a4275
-}
 
 .no-underline {
   text-decoration: none;
@@ -76,40 +73,6 @@ overflow: auto;
 margin-left: 105px
 }
 
-.divData2 {
-overflow: auto;
-margin-left: 40px
-}
-
-.divData3 {
-overflow: auto;
-margin-left: 114px
-}
-
-.divData4 {
-overflow: auto;
-margin-left: 108px
-}
-
-.divData5 {
-overflow: auto;
-margin-left: 77px
-}
-
-.divData6 {
-overflow: auto;
-margin-left: 73px
-}
-
-.divData7 {
-overflow: auto;
-margin-left: 96px
-}
-
-.divData8 {
-overflow: auto;
-margin-left: 104px
-}
 
 .divTitle {
 margin-top: 0;
@@ -122,8 +85,6 @@ align-items: flex-start;
 margin-bottom: 10px;
 }
 
-
-Sirawich Thongyao
 .page-store {
   display: flex;
   flex-direction: column;

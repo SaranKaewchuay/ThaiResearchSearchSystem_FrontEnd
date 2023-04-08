@@ -35,15 +35,15 @@
           <div class="shadow p-3 bg-white rounded">
             <div class="game-profile-card">
               <ul class="game-profile-card__list font">
-                <li>
+                <li *ngIf = item.Headname>
                   <div>ผู้เขียน:</div>
                   <div class="divData text"><span>{{ item.Headname }}</span></div>
                 </li>
-                <li>
+                <li *ngIf = item.ProjectType>
                   <div class="divTitle">ประเภทโครงการ:</div>
                   <div class="divData text"><p>{{ item.ProjectType }}</p></div>
                 </li>
-                <li>
+                <li *ngIf = item.SubmitDepartmentth>
                   <div class="divTitle">สังกัด:</div>
                   <div class="divData text"><p>{{ item.SubmitDepartmentth }}</p></div>
                 </li>
@@ -51,15 +51,15 @@
                   <div class="divTitle">OECD:</div>
                   <div class="divData text"><p>{{ item.OECD1 }}, {{ item.OECD2 }}</p></div>
                 </li>
-                <li>
+                <li *ngIf = item.ProjectYearSubmit>
                   <div class="divTitle">ปีที่เผยแพร่:</div>
                   <div class="divData text"><p>{{ item.ProjectYearSubmit }}</p></div>
                 </li>
-                <li>
+                <li *ngIf = item.ProjectObjective >
                   <div class="divTitle">วัตถุประสงค์:</div>
                   <div class="divData text"><p>{{ item.ProjectObjective }}</p></div>
                 </li>
-                <li>
+                <li *ngIf = item.ProjectAbstract>
                   <div class="divTitle">บทคัดย่อโครงการ:</div>
                   <div class="divData text"><p>{{ item.ProjectAbstract }}</p></div>
                 </li>

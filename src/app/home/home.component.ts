@@ -143,16 +143,21 @@ export class HomeComponent {
 
     }
   }
-
   addYearFact(list: any) {
     this.facetYear = [];
+  
     for (let i = 0; i < list.length; i++) {
       const element = list[i];
       if (i % 2 === 0) {
         this.facetYear.push({ data: element, count: list[i + 1] });
       }
     }
+  
+    this.facetYear.sort((a, b) => {
+      return parseInt(a.data) - parseInt(b.data);
+    });
   }
+  
 
   addProvinceFact(list: any) {
     this.facetProvince = [];
@@ -162,6 +167,8 @@ export class HomeComponent {
         this.facetProvince.push({ data: element, count: list[i + 1] });
       }
     }
+
+    this.facetProvince.sort((a, b) => a.data.localeCompare(b.data, 'th'));
   }
 
   addOecdFact(list: any) {
@@ -172,6 +179,8 @@ export class HomeComponent {
         this.facetOecd.push({ data: element, count: list[i + 1] });
       }
     }
+
+    this.facetOecd.sort((a, b) => a.data.localeCompare(b.data, 'th'));
   }
 
 

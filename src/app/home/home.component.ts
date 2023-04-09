@@ -232,7 +232,7 @@ export class HomeComponent {
 
 
   search(keyword: string) {
-    if(keyword=="*"){
+    if(keyword==="*"){
       this.form.controls['keyword'].setValue('');
       this.selectedOECD = ""
       this.selectedYear = ""
@@ -240,6 +240,7 @@ export class HomeComponent {
       this.check_boolean = "0"
       this.facetField = ""
       this.facetField1 = ""
+      this.keyword = ""
     }
     this.book = [];
     this.facetField = ""

@@ -30,7 +30,7 @@
                                         <form [formGroup]="form" (ngSubmit)="submit()">
                                             <div class="search">
                                                 <div class="search__input font">
-                                                    <input type="search" name="search" placeholder="Search"
+                                                    <input type="search" name="search" placeholder="Search" id="search"
                                                         formControlName="keyword" aria-label="Search" style="color: black;" class="font">
                                                 </div>
                                                 <div class="search__btn">
@@ -126,9 +126,9 @@
                                                     <span style="color: black;">&nbsp; {{item.ProjectYearSubmit }} </span>
 
                                                 </div>
-                                                <div *ngIf="facetField">
+                                                <div  *ngIf="facetField || facetField1" >
                                                     <span class="badge rounded-pill font ms-auto font-size"
-                                                        style="background-color: #0a4275">{{facetField}}</span>
+                                                        style="background-color: #0a4275">{{facetField}} {{ facetField1}}</span>
                                                 </div>
                                             </div>
 

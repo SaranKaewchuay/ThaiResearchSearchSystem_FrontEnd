@@ -34,6 +34,7 @@ export class HomeComponent {
   facetOecd: any[] = [];
   facetProvince: any[] = [];
   facetField: string = '';
+  facetField1 : string = '';
   booleanFilter: string = '';
   test: string = '';
   numfound: any;
@@ -156,6 +157,7 @@ export class HomeComponent {
       .catch(error => console.error(error));
     }
     else{
+      this.facetField1  = value
       if(key === "OECD1"){
         this.oecd1 = value
       }else if (key ===  "ProjectYearSubmit"){
@@ -230,6 +232,15 @@ export class HomeComponent {
 
 
   search(keyword: string) {
+    if(keyword=="*"){
+      this.form.controls['keyword'].setValue('');
+      this.selectedOECD = ""
+      this.selectedYear = ""
+      this.selectedProvince = ""
+      this.check_boolean = "0"
+      this.facetField = ""
+      this.facetField1 = ""
+    }
     this.book = [];
     this.facetField = ""
     this.booleanFilter = ""

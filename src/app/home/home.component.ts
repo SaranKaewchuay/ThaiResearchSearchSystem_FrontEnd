@@ -131,9 +131,9 @@ export class HomeComponent {
       .catch(error => console.error(error));
 
 
-      // this.selectedOECD= this.selectedOECD=== "*" ? "" : this.selectedOECD
-      // this.selectedYear = this.selectedYear === "*" ? "" : this.selectedYear;
-      // this.selectedProvince = this.selectedProvince === "*" ? "" : this.selectedProvince;
+      this.selectedOECD= this.selectedOECD=== "*" ? "" : this.selectedOECD
+      this.selectedYear = this.selectedYear === "*" ? "" : this.selectedYear;
+      this.selectedProvince = this.selectedProvince === "*" ? "" : this.selectedProvince;
   }
 
 

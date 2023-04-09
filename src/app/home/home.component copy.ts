@@ -131,9 +131,9 @@ export class HomeComponent {
       .catch(error => console.error(error));
 
 
-      // this.selectedOECD= this.selectedOECD=== "*" ? "" : this.selectedOECD
-      // this.selectedYear = this.selectedYear === "*" ? "" : this.selectedYear;
-      // this.selectedProvince = this.selectedProvince === "*" ? "" : this.selectedProvince;
+      this.selectedOECD= this.selectedOECD=== "*" ? "" : this.selectedOECD
+      this.selectedYear = this.selectedYear === "*" ? "" : this.selectedYear;
+      this.selectedProvince = this.selectedProvince === "*" ? "" : this.selectedProvince;
   }
 
 
@@ -188,7 +188,6 @@ export class HomeComponent {
 
     } else {
       if (this.selectedOECD || this.selectedYear || this.selectedProvince) {
-        this.check_boolean = "1" 
         this.getDataBoolean("")
       } else {
         this.check_boolean = "0"

@@ -1,29 +1,27 @@
-<div >
+<div>
 
 
 
   <div class="container-xl fixed margin-top" style="color: #0a4275;">
 
     <header class="page-header shadow-lg mb-5 " style="background-color: #0a4275;">
-        <div class="page-header__inner container" style="background-color: #0a4275;">
-            <a [routerLink] = "['/']"class="no-underline">
-                <div>
-                    
-                    <div class=" mb-3">
-                        <img src="https://www.qualitymatters.org/sites/default/files/illustrations-infographics/research-webinar-icon-600px.png" width="75px" height="80px" class="mt-3" >
-                        <span class="page-header__logo_text text-white font ml-2">
-                            Thai Research Search
-                        </span>
-                    </div>
-                </div>
-            </a>
-        </div>
+      <div class="page-header__inner container" style="background-color: #0a4275;">
+        <a [routerLink]="['/']" class="no-underline">
+          <div>
+
+            <div class=" mb-3">
+              <img
+                src="https://www.qualitymatters.org/sites/default/files/illustrations-infographics/research-webinar-icon-600px.png"
+                width="75px" height="80px" class="mt-3">
+              <span class="page-header__logo_text text-white font ml-2">
+                Thai Research Search
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
     </header>
 
-
-
-
-    
     <div *ngIf="isLoading" class="loader"></div>
 
     <div class="mb-5">
@@ -35,35 +33,51 @@
           <div class="shadow p-3 bg-white rounded">
             <div class="game-profile-card">
               <ul class="game-profile-card__list font">
-                <li *ngIf = item.Headname>
+                <li *ngIf=item.Headname>
                   <div>ผู้เขียน:</div>
                   <div class="divData text"><span>{{ item.Headname }}</span></div>
                 </li>
-                <li *ngIf = item.ProjectType>
+                <li *ngIf=item.ProjectType>
                   <div class="divTitle">ประเภทโครงการ:</div>
-                  <div class="divData text"><p>{{ item.ProjectType }}</p></div>
+                  <div class="divData text">
+                    <p>{{ item.ProjectType }}</p>
+                  </div>
                 </li>
-                <li *ngIf = item.SubmitDepartmentth>
+                <li *ngIf=item.SubmitDepartmentth>
                   <div class="divTitle">สังกัด:</div>
-                  <div class="divData text"><p>{{ item.SubmitDepartmentth }}</p></div>
+                  <div class="divData text">
+                    <p>{{ item.SubmitDepartmentth }}</p>
+                  </div>
                 </li>
-                <li>
+                <li *ngIf="item.OECD1 || item.OECD2">
                   <div class="divTitle">OECD:</div>
-                  <div class="divData text"><p>{{ item.OECD1 }}, {{ item.OECD2 }}</p></div>
+                  <div class="divData text">
+                    <p>
+                      <span>{{ item.OECD1 }}</span>
+                      <span *ngIf="item.OECD2 != item.OECD1">, {{ item.OECD2 }}</span>
+                    </p>
+                  </div>
                 </li>
-                <li *ngIf = item.ProjectYearSubmit>
+
+                <li *ngIf=item.ProjectYearSubmit>
                   <div class="divTitle">ปีที่เผยแพร่:</div>
-                  <div class="divData text"><p>{{ item.ProjectYearSubmit }}</p></div>
+                  <div class="divData text">
+                    <p>{{ item.ProjectYearSubmit }}</p>
+                  </div>
                 </li>
-                <li *ngIf = item.ProjectObjective >
+                <li *ngIf=item.ProjectObjective>
                   <div class="divTitle">วัตถุประสงค์:</div>
-                  <div class="divData text"><p>{{ item.ProjectObjective }}</p></div>
+                  <div class="divData text">
+                    <p>{{ item.ProjectObjective }}</p>
+                  </div>
                 </li>
-                <li *ngIf = item.ProjectAbstract>
+                <li *ngIf=item.ProjectAbstract>
                   <div class="divTitle">บทคัดย่อโครงการ:</div>
-                  <div class="divData text"><p>{{ item.ProjectAbstract }}</p></div>
+                  <div class="divData text">
+                    <p>{{ item.ProjectAbstract }}</p>
+                  </div>
                 </li>
-                <li>
+                <li *ngIf= item.SubmitDepProvinceTH>
                   <div class="divTitle">สถานที่:</div>
                   <div class="divData text">{{ item.SubmitDepProvinceTH }}</div>
                 </li>

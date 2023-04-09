@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
-
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -20,11 +20,16 @@ export class HomeComponent {
     }),
   };
 
-  check_boolean: boolean = false;
+  check_boolean: string = "0";
   string = 'Select';
   oecd: string = '';
   year: string = '';
   province: string = '';
+
+  oecd1: string = '';
+  year1: string = '';
+  province1: string = '';
+
   facetYear: any[] = [];
   facetOecd: any[] = [];
   facetProvince: any[] = [];
@@ -42,9 +47,10 @@ export class HomeComponent {
   selectedYear: string = '';
   selectedProvince: string = '';
   isActive = false;
+  keyword : string = '';
 
   myForm: FormGroup;
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute,private location: Location) {
 
     this.myForm = new FormGroup({
       oecd: new FormControl()
@@ -69,6 +75,7 @@ export class HomeComponent {
     this.state.oecd = this.oecd,
     this.state.year = this.year,
     this.state.province = this.province
+    this.state.keyword = this.keyword 
 
   }
 
@@ -79,20 +86,40 @@ export class HomeComponent {
     this.searchYear(this.selectedValue)
   }
 
-  getDataBoolean() {
-    this.check_boolean = true
-    this.oecd = this.selectedOECD
-    this.year = this.selectedYear
-    this.province = this.selectedProvince
-    this.booleanFilter = this.oecd + " " + this.year + " " + this.province
+  getDataBoolean(keyword:string) {
+    this.booleanFilter = keyword + " " + this.selectedOECD + " " + this.selectedYear + " " + this.selectedProvince
 
-    this.oecd = this.oecd === "" ? "*" : this.oecd;
-    this.year = this.year === "" ? "*" : this.year;
-    this.province = this.province === "" ? "*" : this.province;
+    this.selectedOECD= this.selectedOECD=== "" ? "*" : this.selectedOECD
+    this.selectedYear = this.selectedYear === "" ? "*" : this.selectedYear;
+    this.selectedProvince = this.selectedProvince === "" ? "*" : this.selectedProvince;
+    keyword = keyword === "" ? "*" : keyword;
+
+
+
     this.book = [];
     this.facetField = ""
+    let baseUrl =""
+    if (this.year1 || this.province1 || this.oecd1) {
+      if (this.oecd1 !== "") {
+        this.selectedOECD = ""
+        this.selectedOECD = this.oecd1;
+      }
+      if (this.year1 !== "") {
+        this.selectedYear = ""
+        this.selectedYear = this.year1;
+      }
+      if (this.province1 !== "") {
+        this.selectedProvince=""
+        this.selectedProvince = this.province1;
+      }
 
-    let baseUrl = `http://localhost:8080/getDataBoolean/` + this.year + `/` + this.province + `/` + this.oecd
+      this.year1 = "";
+      this.province1 = "";
+      this.oecd1 = "";
+    }
+   
+    baseUrl = `http://localhost:8080/getDataBoolean/` + this.selectedYear  + `/` + this.selectedProvince + `/` +  this.selectedOECD + `/` + keyword
+
     axios.get(baseUrl)
       .then((response) => {
         this.book = response.data.response.docs;
@@ -104,60 +131,81 @@ export class HomeComponent {
       .catch(error => console.error(error));
 
 
-    this.oecd = this.oecd === "*" ? "" : this.oecd;
-    this.year = this.year === "*" ? "" : this.year;
-    this.province = this.province === "*" ? "" : this.province;
+      this.selectedOECD= this.selectedOECD=== "*" ? "" : this.selectedOECD
+      this.selectedYear = this.selectedYear === "*" ? "" : this.selectedYear;
+      this.selectedProvince = this.selectedProvince === "*" ? "" : this.selectedProvince;
   }
 
 
   getDataByFact(key: string, value: string) {
-
     this.book = [];
     this.facetField = ""
-    let baseUrl = `http://localhost:8080/getDataByFact/` + key + `/` + value
-    axios.get(baseUrl)
+    let baseUrl = "";
+    this.oecd1 = "";
+    this.year1= "";
+    this.province1 = "";
+
+    if(this.check_boolean == "0"){
+      baseUrl = `http://localhost:8080/getDataByFact/` + key + `/` + value
+      axios.get(baseUrl)
       .then((response) => {
         this.book = response.data.response.docs;
         this.numfound = response.data.response.numFound;
         this.facetField = value
       })
       .catch(error => console.error(error));
+    }
+    else{
+      if(key === "OECD1"){
+        this.oecd1 = value
+      }else if (key ===  "ProjectYearSubmit"){
+        this.year1 = value
+
+      }else if(key ===  "SubmitDepProvinceTH"){
+        this.province1 = value
+      }
+
+   
+      this.getDataBoolean(this.keyword)
+      this.booleanFilter = this.keyword + " " + this.selectedOECD + " " + this.selectedYear + " " + this.selectedProvince
+
+    }
 
   }
 
   submit() {
     this.booleanFilter = "";
     if (this.form.valid) {
-      let keyword = this.form.controls['keyword'].value
-      this.search(keyword);
-      this.booleanFilter = keyword
-      this.selectedOECD = "";
-      this.selectedYear = "";
-      this.selectedProvince = "";
+      this.keyword = this.form.controls['keyword'].value
+      this.check_boolean = "1"  
+      if (this.selectedOECD || this.selectedYear || this.selectedProvince) {
+        
+        this.getDataBoolean(this.keyword )
+      } else{
+        this.search(this.keyword );
+        this.booleanFilter = this.keyword 
+      }
+
     } else {
       if (this.selectedOECD || this.selectedYear || this.selectedProvince) {
-        this.getDataBoolean()
+        this.getDataBoolean("")
       } else {
+        this.check_boolean = "0"
         this.search("*");
       }
 
     }
   }
+
   addYearFact(list: any) {
     this.facetYear = [];
-  
     for (let i = 0; i < list.length; i++) {
       const element = list[i];
       if (i % 2 === 0) {
         this.facetYear.push({ data: element, count: list[i + 1] });
       }
     }
-  
-    this.facetYear.sort((a, b) => {
-      return parseInt(a.data) - parseInt(b.data);
-    });
   }
-  
 
   addProvinceFact(list: any) {
     this.facetProvince = [];
@@ -167,8 +215,6 @@ export class HomeComponent {
         this.facetProvince.push({ data: element, count: list[i + 1] });
       }
     }
-
-    this.facetProvince.sort((a, b) => a.data.localeCompare(b.data, 'th'));
   }
 
   addOecdFact(list: any) {
@@ -179,15 +225,10 @@ export class HomeComponent {
         this.facetOecd.push({ data: element, count: list[i + 1] });
       }
     }
-
-    this.facetOecd.sort((a, b) => a.data.localeCompare(b.data, 'th'));
   }
 
 
   search(keyword: string) {
-    this.selectedOECD = "";
-    this.selectedYear = "";
-    this.selectedProvince = "";
     this.book = [];
     this.facetField = ""
     this.booleanFilter = ""
@@ -220,7 +261,6 @@ export class HomeComponent {
     this.book = [];
     let baseUrl;
     if (oecd == "*") {
-      this.check_boolean = false;
       baseUrl = `http://localhost:8080/getsolr/` + oecd;
     } else {
       baseUrl = `http://localhost:8080/getByOecd/` + oecd;
